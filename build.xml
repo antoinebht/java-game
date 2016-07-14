@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Mind" default="all" basedir=".">
+
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="build" />
+	<property name="dist.dir" location="dist" />
+	<property name="res.dir" location="res" />
+	
+
+	<!--  Clean Folders  -->
+	<target name="clean">
+    	<delete dir="${build.dir}" />
+    	<delete dir="${dist.dir}" />
+    </target>
+
+
+    <!--  Make Folders  -->
+	<target name="makedir">
+    	<mkdir dir="${build.dir}" />
+    	<mkdir dir="${dist.dir}" />
+    </target>
+
+
+    <!-- Copy of ressources files -->
+    <target name="copyres">
+    	<copy todir="${dist.dir}/res">
+  			<fileset dir="${res.dir}">
+    			<exclude name="**/*.java"/>
+  			</fileset>
+		</copy>
+    </target>
+	
+	
+	<!-- Compilation -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+		</javac>
+	</target>
+
+
+	<!-- Create .JAR -->
+	<target name="dist" depends="compile, copyres">
+		<jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="Main" />
+			</manifest>
+		</jar>
+	</target>
+
+
+	<!-- Run -->
+	<target name="run">
+		<java jar="${dist.dir}/${ant.project.name}.jar" fork="true">
+			<!--<arg value="${arg0}" />-->
+		</java>
+	</target>
+
+	<target name="all" depends="dist, run">
+	</target>
+
+</project>
