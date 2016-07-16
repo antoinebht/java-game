@@ -17,10 +17,13 @@ public class App{
 	public void run(){
 		int fps = 0;
 		long lastTime = System.currentTimeMillis();
+
 		while(running){
-			fps++;
+			
 			states.peek().display();
 
+			fps++;
+			//Display info fps in term
 			if(System.currentTimeMillis() - lastTime >= 1000){
 				System.out.println("FPS:"+fps);
 				lastTime = System.currentTimeMillis();
@@ -38,11 +41,11 @@ public class App{
 
 
 	public void mainMenu(){
-		states.push(new MainMenu(window));
+		states.push(new MainMenu(this, window));
 	}
 
 	public void playGame(){
-		states.push(new Game());
+		states.push(new Game(this, window));
 	}
 
 

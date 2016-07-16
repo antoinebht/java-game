@@ -5,10 +5,9 @@ import java.awt.Canvas;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.event.MouseListener;
 
 public class Window extends Canvas{
-
-	protected JFrame frame;
 
 	public Window(int width, int height, String name){
 		setSize(width, height);
@@ -21,4 +20,12 @@ public class Window extends Canvas{
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack();
 	}
+
+	public void setMouseListener(MouseListener mouseListener){
+		if(getMouseListeners().length > 0)
+			removeMouseListener(frame.getMouseListeners()[0]);
+		addMouseListener(mouseListener);
+	}
+	
+	protected JFrame frame;
 }
