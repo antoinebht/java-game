@@ -1,7 +1,7 @@
 package app;
 
 import app.Window;
-
+import app.App;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

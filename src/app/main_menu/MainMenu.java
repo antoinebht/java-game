@@ -18,10 +18,13 @@ public class MainMenu extends State{
 
 	@Override
 	public void display(){
-		//System.out.println("MainMenu");
-
 		Graphics g = window.getGraphics();
 		g.setColor(Color.RED);
 		g.fillRect(20,20,200,200);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e){
+		app.playGame();
 	}
 }

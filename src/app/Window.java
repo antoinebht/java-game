@@ -22,8 +22,9 @@ public class Window extends Canvas{
 	}
 
 	public void setMouseListener(MouseListener mouseListener){
-		if(getMouseListeners().length > 0)
-			removeMouseListener(frame.getMouseListeners()[0]);
+		if(getMouseListeners().length > 0){
+			removeMouseListener(getMouseListeners()[0]);
+		}
 		addMouseListener(mouseListener);
 	}
 	
