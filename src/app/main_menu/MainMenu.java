@@ -2,9 +2,10 @@ package app.main_menu;
 
 import app.App;
 import app.State;
-import app.Window;
+import app.view.Window;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.event.MouseEvent;
@@ -19,8 +20,11 @@ public class MainMenu extends State{
 	@Override
 	public void display(){
 		Graphics g = window.getGraphics();
-		g.setColor(Color.RED);
-		g.fillRect(20,20,200,200);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Lucida",Font.PLAIN, 12));
+		g.drawString("Mind v0.1 - ©AntoineB",650,590);
+		g.setFont(new Font("Lucida",Font.PLAIN, 36));
+		g.drawString("Mind v0.1",35,50);
 	}
 
 	@Override

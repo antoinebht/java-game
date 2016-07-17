@@ -3,6 +3,7 @@ package app;
 import java.util.Stack;
 import java.lang.Thread;
 
+import app.view.Window;
 import app.main_menu.MainMenu;
 import app.game.Game;
 
@@ -31,7 +32,7 @@ public class App{
 			}
 
 			try{
-				Thread.sleep(1000/60);
+				Thread.sleep(1000/30); // 1s / 60FPS
 			}
 			catch(InterruptedException e){
 				System.err.println("Err pausing FPS");
