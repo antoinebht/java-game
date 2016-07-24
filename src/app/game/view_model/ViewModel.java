@@ -12,33 +12,53 @@ import app.view.Window;
 import app.view.Camera;
 
 import app.game.model.Model;
+import app.game.model.Player;
 import app.game.model.IBiome;
+
+import app.game.view_model.tiles.BiomeTilesFactory;
 
 public class ViewModel{
 	protected BufferedImage currentImage;
 
-	final int TILE_SIZE_X = 16;
-	final int TILE_SIZE_Y = 16; 
+	final int TILE_SIZE_X = 64;
+	final int TILE_SIZE_Y = 64; 
 
-	public void displayMap(Window window, Model model){
-	    Dimension d = window.size();
+	public void display(Window window, Model model){
+		Dimension d = window.size();
 	    Image offscreen = window.createImage(d.width, d.height);
 	    Graphics g = offscreen.getGraphics();
 
 		//Efface le canvas
 		g.clearRect(0,0, 800, 600);
 
-		//Recuperer la camera
-		Camera camera = window.getCamera();
-		//On stock les détails de la caméra
-		int cY = camera.getY(); int cX = camera.getX();
-		int cW = camera.getWidth(); int cH = camera.getHeight();
+		displayMap(g, model);
+		displayPlayer(g, model.getPlayer());
+
+		
+		//Recuperer le canvas
+		Graphics canvas = window.getGraphics();
+	    // transfer offscreen to window
+	    canvas.drawImage(offscreen, 0, 0, window);
+	}
+
+	public void displayPlayer(Graphics g, Player p){
+		BufferedImage sprite = p.getSprite();
+		g.drawImage(sprite, /*(int)(p.getX()*TILE_SIZE_X)+*/368, /*(int)(p.getY()*TILE_SIZE_Y)+*/268, null);
+	}
+
+	public void displayMap(Graphics g, Model model){
+		
+		float cX = model.getPlayer().getX();
+		float cY = model.getPlayer().getY();
+
+		int width = 800;
+		int height = 600;
 
 		// +/- 1 -> Arrondi du float
-		int minVisibleLine = xy2l(cX+cW, cY) - 1;
-		int maxVisibleLine = xy2l(cX, cY+cH) + 1;
-		int minVisibleColumn = xy2c(cX, cY) - 1;
-		int maxVisibleColumn =  xy2c(cX+cW, cY+cH) +1;
+		int minVisibleLine = (int)(cY - height/2)/TILE_SIZE_Y - 1;
+		int maxVisibleLine = (int)(cY + height/2)/TILE_SIZE_Y + 1;
+		int minVisibleColumn = (int)(cX - width/2)/TILE_SIZE_X - 1;
+		int maxVisibleColumn =  (int)(cX + width/2)/TILE_SIZE_X + 1;
 
 		int minLine = model.getWorldMinLine();
 		int maxLine = model.getWorldMaxLine();
@@ -55,17 +75,12 @@ public class ViewModel{
 				IBiome biome = model.getWorldBiome(line, column);
 				if(biome != null){
 					biome.acceptViewModel(this);
-					g.drawImage(currentImage, -camera.getX() + cl2x(line, column) , 
-								-camera.getY() + cl2y(line, column) , null);
+					g.drawImage(currentImage, (int)(column*TILE_SIZE_X+368-cX*TILE_SIZE_X), (int)(line*TILE_SIZE_Y+268-cY*TILE_SIZE_Y) , null);
 				}	
 			}
 		}
 
 
-		//Recuperer le canvas
-		Graphics canvas = window.getGraphics();
-	    // transfer offscreen to window
-	    canvas.drawImage(offscreen, 0, 0, window);
 	}
 
 	private int xy2l(int x, int y){
@@ -93,9 +108,12 @@ public class ViewModel{
 		currentImage = BiomeTilesFactory.forest();
 	}
 
-	public void visitPlain(){
-		
+	public void visitPlain(){	
 		currentImage = BiomeTilesFactory.plain();
 	}
+
+
+
+
 
 }

@@ -24,7 +24,7 @@ public class BiomeFactory{
 
 	public IBiome aleatoire(){
 		int ind = (int)(Math.random() * biomes.length); //alea entre [0;biomes.length-1]
-		return biomes[ind];
+		return biomes[1];
 	}
 
 }

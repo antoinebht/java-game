@@ -1,13 +1,11 @@
 package app.game.model;
 
-/**
- * 
- */
 public class Model{
 
 	public Model(int numberOfBiome){
 		world = new World(numberOfBiome);
 		world.generate();
+		player = new Player();
 	}
 
 //Requete d'affichage
@@ -40,5 +38,25 @@ public class Model{
 		return world.getBiome(line, column);
 	}
 
+//Facade Player
+	public Player getPlayer(){
+		return player;
+	}
+
+	public void playerUp(){
+		player.up();
+	}
+	public void playerDown(){
+		player.down();
+	}
+	public void playerLeft(){
+		player.left();
+	}
+	public void playerRight(){
+		player.right();
+	}
+
+
 	protected World world;
+	protected Player player;
 }

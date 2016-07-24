@@ -1,4 +1,4 @@
-package app.game.view_model;
+package app.game.view_model.tiles;
 
 
 import java.awt.image.BufferedImage;
@@ -19,15 +19,15 @@ public class BiomeTilesFactory{
 	public static BufferedImage plain(){
 		if(plain == null){
 			try{
-				plain = ImageIO.read(new File("res/img/biome/Grass_16.png"));
+				plain = ImageIO.read(new File("res/img/biome/Grass_64.png"));
 			}
 			catch(IOException e){
 				System.err.println("Le fichier ressource [res/img/biome/plain4.png] est inaccessible.");
 			}
 		}
 
-		int i = rand.nextInt(4);
-		return plain.getSubimage(i*16,0,16,16);
+		int i = rand.nextInt(1);
+		return plain.getSubimage(i*64,0,64,64);
 	}
 
 	public static BufferedImage forest(){

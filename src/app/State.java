@@ -21,7 +21,6 @@ abstract public class State implements MouseListener, KeyListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e){
-		System.out.println("Click");
 	}
 	@Override
 	public void mouseEntered(MouseEvent e){
@@ -38,7 +37,6 @@ abstract public class State implements MouseListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e){
-		System.out.println("Key");
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 				keyUp();

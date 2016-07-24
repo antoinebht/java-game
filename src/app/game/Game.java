@@ -24,7 +24,7 @@ public class Game extends State{
 	@Override
 	public void display(){
 		if(needUpdate)
-			viewModel.displayMap(window, model);
+			viewModel.display(window, model);
 
 		needUpdate = false;
 	}
@@ -35,25 +35,25 @@ public class Game extends State{
 
 	@Override
 	public void keyUp(){
-		window.getCamera().moveUp();
+		model.playerUp();
 		needUpdate = true;
 	}
 
 	@Override
 	public void keyDown(){
-		window.getCamera().moveDown();
+		model.playerDown();
 		needUpdate = true;
 	}
 
 	@Override
 	public void keyLeft(){
-		window.getCamera().moveLeft();
+		model.playerLeft();
 		needUpdate = true;
 	}
 
 	@Override
 	public void keyRight(){
-		window.getCamera().moveRight();
+		model.playerRight();
 		needUpdate = true;
 	}
 

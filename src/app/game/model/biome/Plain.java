@@ -14,12 +14,12 @@ public class Plain implements IBiome{
 
 	@Override
 	public int minSize(){
-		return 100;
+		return 10;
 	}
 
 	@Override
 	public int maxSize(){
-		return 10000;
+		return 10;
 	}
 
 	@Override

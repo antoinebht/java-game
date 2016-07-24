@@ -1,4 +1,4 @@
-package app.game.view_model;
+package app.game.view_model.tiles;
 
 
 import java.awt.image.BufferedImage;
