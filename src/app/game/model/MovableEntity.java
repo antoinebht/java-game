@@ -13,22 +13,30 @@ abstract public class MovableEntity {
 	}
 
 
-	public void down(){
+	public void down(Model model){
+		if(model.getWorldBiome((int)x, (int)(y+1./speed)) == null)
+			return;
 		state = State.DOWN;
 		y+=1./speed;
 	}
 
-	public void up(){
+	public void up(Model model){
+		if(model.getWorldBiome((int)x, (int)(y-1./speed)) == null)
+			return;
 		state = State.UP;
 		y-=1./speed;
 	}
 
-	public void left(){
+	public void left(Model model){
+		if(model.getWorldBiome((int)(x-1./speed), (int)y) == null)
+			return;
 		state = State.LEFT;
 		x-=1./speed;
 	}
 
-	public void right(){
+	public void right(Model model){
+		if(model.getWorldBiome((int)(x+1./speed), (int)y) == null)
+			return;
 		state = State.RIGHT;
 		x+=1./speed;
 	}
