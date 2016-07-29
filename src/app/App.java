@@ -20,7 +20,7 @@ public class App{
 		long lastTime = System.currentTimeMillis();
 
 		while(running){
-			
+			states.peek().update();
 			states.peek().display();
 
 			fps++;

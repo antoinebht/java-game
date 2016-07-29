@@ -29,6 +29,13 @@ public class Game extends State{
 		needUpdate = false;
 	}
 
+
+	@Override
+	public void update(){
+		model.update();
+		needUpdate = true;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e){
 	}

@@ -9,6 +9,10 @@ public class Model{
 		System.out.println(world);
 	}
 
+	public void update(){
+		player.update();
+	}
+
 //Requete d'affichage
 
 	public void displayMap(){

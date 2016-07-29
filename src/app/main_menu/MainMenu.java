@@ -18,6 +18,9 @@ public class MainMenu extends State{
 	}
 
 	@Override
+	public void update(){}	
+
+	@Override
 	public void display(){
 		Graphics g = window.getGraphics();
 		g.setColor(Color.WHITE);

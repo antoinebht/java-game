@@ -18,6 +18,7 @@ abstract public class State implements MouseListener, KeyListener{
 	}
 
 	abstract public void display();
+	abstract public void update();
 	
 	@Override
 	public void mouseClicked(MouseEvent e){

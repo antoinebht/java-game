@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Color;
+import java.awt.Font;
 
 import app.view.Window;
 import app.view.Camera;
@@ -44,6 +46,10 @@ public class ViewModel{
 	public void displayPlayer(Graphics g, Player p){
 		BufferedImage sprite = p.getSprite();
 		g.drawImage(sprite, /*(int)(p.getX()*TILE_SIZE_X)+*/368, /*(int)(p.getY()*TILE_SIZE_Y)+*/268, null);
+		
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Lucida",Font.PLAIN, 12));
+		g.drawString("("+p.getX()+", "+p.getY()+")", 20, 20);
 	}
 
 	public void displayMap(Graphics g, Model model){
@@ -70,8 +76,8 @@ public class ViewModel{
 		int startColumn = (minVisibleColumn < minColumn) ? minColumn : minVisibleColumn;
 		int endColumn = (maxVisibleColumn < maxColumn) ? maxVisibleColumn : maxColumn;
 
-		for(int line = startLine; line <= endLine; line++){
-			for (int column = startColumn; column <= endColumn; column++) {
+		for(int line = minLine; line <= maxLine; line++){
+			for (int column = minColumn; column <= maxColumn; column++) {
 				IBiome biome = model.getWorldBiome(line, column);
 				if(biome != null){
 					biome.acceptViewModel(this);
