@@ -6,7 +6,6 @@ public class Model{
 		world = new World(numberOfBiome);
 		world.generate();
 		player = new Player();
-		System.out.println(world);
 	}
 
 	public void update(){
@@ -49,16 +48,16 @@ public class Model{
 	}
 
 	public void playerUp(){
-		player.up(this);
+		player.up();
 	}
 	public void playerDown(){
-		player.down(this);
+		player.down();
 	}
 	public void playerLeft(){
-		player.left(this);
+		player.left();
 	}
 	public void playerRight(){
-		player.right(this);
+		player.right();
 	}
 
 

@@ -11,34 +11,28 @@ public class Player extends MovableEntity {
 	}
 
 	@Override
-	public void move(float x, float y){
-		super.move(x, y);
+	public void up(){
+		super.up();
 		step = (step+1)%SpritesFactory.playerUp().getNbFrames();
 	}
 
-	// @Override
-	// public void up(Model model){
-	// 	super.up(model);
-	// 	step = (step+1)%SpritesFactory.playerUp().getNbFrames();
-	// }
+	@Override
+	public void down(){
+		super.down();
+		step = (step+1)%SpritesFactory.playerDown().getNbFrames();
+	}
 
-	// @Override
-	// public void down(Model model){
-	// 	super.down(model);
-	// 	step = (step+1)%SpritesFactory.playerDown().getNbFrames();
-	// }
+	@Override
+	public void left(){
+		super.left();
+		step = (step+1)%SpritesFactory.playerLeft().getNbFrames();
+	}
 
-	// @Override
-	// public void left(Model model){
-	// 	super.left(model);
-	// 	step = (step+1)%SpritesFactory.playerLeft().getNbFrames();
-	// }
-
-	// @Override
-	// public void right(Model model){
-	// 	super.right(model);
-	// 	step = (step+1)%SpritesFactory.playerRight().getNbFrames();
-	// }
+	@Override
+	public void right(){
+		super.right();
+		step = (step+1)%SpritesFactory.playerRight().getNbFrames();
+	}
 
 	@Override
 	public BufferedImage getSprite(){

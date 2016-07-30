@@ -34,28 +34,24 @@ abstract public class MovableEntity {
 			state = State.UP;
 	}
 
-	public void down(Model model){
-		if(actions.isEmpty() && model.getWorldBiome(Math.round(y+1),Math.round(x)) != null)
-			for(int i=0; i<speed; i++)
-				actions.push(new ActionMove(0, 1f/speed));
+	public void down(){
+		state = State.DOWN;
+		y+=1./speed;
 	}
 
-	public void up(Model model){
-		if(actions.isEmpty() && model.getWorldBiome(Math.round(y-1),Math.round(x)) != null)
-			for(int i=0; i<speed; i++)
-				actions.push(new ActionMove(0, -1f/speed));
+	public void up(){
+		state = State.UP;
+		y-=1./speed;
 	}
 
-	public void left(Model model){
-		if(actions.isEmpty() && model.getWorldBiome(Math.round(y),Math.round(x-1)) != null)
-			for(int i=0; i<speed; i++)
-				actions.push(new ActionMove(-1f/speed, 0));
+	public void left(){
+		state = State.LEFT;
+		x-=1./speed;
 	}
 
-	public void right(Model model){
-		if(actions.isEmpty()&& model.getWorldBiome(Math.round(y),Math.round(x+1)) != null)
-			for(int i=0; i<speed; i++)
-				actions.push(new ActionMove(1f/speed, 0));
+	public void right(){
+		state = State.RIGHT;
+		x+=1./speed;
 	}
 
 	abstract public BufferedImage getSprite();

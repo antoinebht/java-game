@@ -19,7 +19,7 @@ public class BiomeTilesFactory{
 	public static BufferedImage plain(){
 		if(plain == null){
 			try{
-				plain = ImageIO.read(new File("res/img/biome/Grass_64-2.png"));
+				plain = ImageIO.read(new File("res/img/biome/Grass_64.png"));
 			}
 			catch(IOException e){
 				System.err.println("Le fichier ressource [res/img/biome/plain4.png] est inaccessible.");
