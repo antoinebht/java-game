@@ -3,35 +3,51 @@ package app.game.model;
 import app.game.view_model.sprite.SpritesFactory;
 import app.game.exceptions.FrameNotDefinedException;
 
+import app.game.model.game_objects.Container;
+
 import java.awt.image.BufferedImage;
+
+
 
 public class Player extends MovableEntity {
 	public Player(){
 		super();
+		backpack = null;
 	}
 
+	public void objectAction(Container c){
+		backpack = c;
+		System.out.println("New backpack");
+	}
+
+
+
 	@Override
-	public void up(){
-		super.up();
+	public boolean up(Model model){
+		super.up(model);
 		step = (step+1)%SpritesFactory.playerUp().getNbFrames();
+		return true;
 	}
 
 	@Override
-	public void down(){
-		super.down();
+	public boolean down(Model model){
+		super.down(model);
 		step = (step+1)%SpritesFactory.playerDown().getNbFrames();
+		return true;
 	}
 
 	@Override
-	public void left(){
-		super.left();
-		step = (step+1)%SpritesFactory.playerLeft().getNbFrames();
+	public boolean left(Model model){
+		if(super.left(model))
+			step = (step+1)%SpritesFactory.playerLeft().getNbFrames();
+		return true;
 	}
 
 	@Override
-	public void right(){
-		super.right();
+	public boolean right(Model model){
+		super.right(model);
 		step = (step+1)%SpritesFactory.playerRight().getNbFrames();
+		return true;
 	}
 
 	@Override
@@ -72,4 +88,6 @@ public class Player extends MovableEntity {
 		}
 		return null;
 	}
+
+	protected Container backpack;
 }

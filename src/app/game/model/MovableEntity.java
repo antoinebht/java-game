@@ -8,50 +8,42 @@ abstract public class MovableEntity {
 
 	public MovableEntity(){
 		state = State.DOWN;
-		speed = 9;
+		speed = 6;
 		step = 0;
 		x = 0;
 		y= 1;
-		actions = new LinkedList<ActionMove>();
 	}
 
-	public void update(){
-		if(!actions.isEmpty())
-			actions.pop().exec(this);
-	}
-
-	public void move(float x, float y){
-		this.x+= x;
-		this.y+= y;
-
-		if(x>0)
-			state = State.RIGHT;
-		else if (x<0)
-			state = State.LEFT;
-		else if (y>0) 
-			state = State.DOWN;
-		else
-			state = State.UP;
-	}
-
-	public void down(){
+	public boolean down(Model model){
+		if(model.getWorldBiome(Math.round(y+1f/speed), Math.round(x)) == null)
+			return false;
 		state = State.DOWN;
 		y+=1./speed;
+		return true;
 	}
 
-	public void up(){
+	public boolean up(Model model){
+		if(model.getWorldBiome(Math.round(y-1f/speed), Math.round(x)) == null)
+			return false;
 		state = State.UP;
 		y-=1./speed;
+		return true;
 	}
 
-	public void left(){
+	public boolean left(Model model){
+		if(model.getWorldBiome(Math.round(y), Math.round(x-1f/speed)) == null)
+			return false;
 		state = State.LEFT;
 		x-=1./speed;
+		return true;
 	}
 
-	public void right(){
+	public boolean right(Model model){
+		if(model.getWorldBiome(Math.round(y), Math.round(x+1f/speed)) == null)
+			return false;
 		state = State.RIGHT;
 		x+=1./speed;
+		return true;
 	}
 
 	abstract public BufferedImage getSprite();
@@ -68,5 +60,4 @@ abstract public class MovableEntity {
 	protected int speed;
 	protected State state;
 	protected int step;
-	protected LinkedList<ActionMove> actions;
 }

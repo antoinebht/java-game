@@ -9,7 +9,6 @@ public class Model{
 	}
 
 	public void update(){
-		player.update();
 	}
 
 //Requete d'affichage
@@ -48,16 +47,16 @@ public class Model{
 	}
 
 	public void playerUp(){
-		player.up();
+		player.up(this);
 	}
 	public void playerDown(){
-		player.down();
+		player.down(this);
 	}
 	public void playerLeft(){
-		player.left();
+		player.left(this);
 	}
 	public void playerRight(){
-		player.right();
+		player.right(this);
 	}
 
 
